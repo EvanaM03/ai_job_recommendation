@@ -1,21 +1,34 @@
-# recommendations/models.py
 from django.db import models
-
-from ai_job_recommendation.accounts.models import User
-from ai_job_recommendation.jobs.models import Job
+from accounts.models import User
+from jobs.models import Job
 
 
 class InteractionLog(models.Model):
-    """Tracks user behavior to train the model"""
+
+    ACTIONS = [
+        ('viewed','Viewed'),
+        ('clicked','Clicked'),
+        ('applied','Applied'),
+        ('rejected','Rejected')
+    ]
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
-    action = models.CharField(max_length=20) # 'Viewed', 'Clicked', 'Applied', 'Rejected'
+
+    action = models.CharField(max_length=20, choices=ACTIONS)
+
     timestamp = models.DateTimeField(auto_now_add=True)
 
+
 class RecommendationLog(models.Model):
-    """Stores what was recommended to track accuracy"""
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
-    algorithm_used = models.CharField(max_length=50) # e.g., 'KNN', 'Cosine'
-    score = models.FloatField() # Confidence score
+
+    algorithm_used = models.CharField(max_length=50)
+
+    score = models.FloatField()
+
     created_at = models.DateTimeField(auto_now_add=True)
