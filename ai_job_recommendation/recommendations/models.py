@@ -1,7 +1,9 @@
 # recommendations/models.py
 from django.db import models
-from accounts.models import User
-from jobs.models import Job
+
+from ai_job_recommendation.accounts.models import User
+from ai_job_recommendation.jobs.models import Job
+
 
 class InteractionLog(models.Model):
     """Tracks user behavior to train the model"""

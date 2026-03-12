@@ -1,6 +1,8 @@
 # jobs/models.py
 from django.db import models
-from accounts.models import User
+
+from ai_job_recommendation.accounts.models import User, Skill
+
 
 class Job(models.Model):
     title = models.CharField(max_length=200)
