@@ -1,7 +1,7 @@
 # recommendations/views.py (Final Step)
 from django.http import JsonResponse
 
-from ml_engine.recommender import JobRecommender
+from ml_engine.services import JobRecommender
 
 
 def get_recommendations(request, user_id):

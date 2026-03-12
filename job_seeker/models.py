@@ -1,49 +1,54 @@
 from django.db import models
-from django.contrib.auth import get_user_model
-
+from accounts.models import User
 from skill.models import Skill
-
-User = get_user_model()
 
 
 class JobSeekerProfile(models.Model):
-    """Extends the User model with job-seeking specific data"""
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='seeker_profile')
 
-    # Text for Cosine Similarity
-    bio = models.TextField(blank=True, help_text="Summary of skills and goals")
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    date_of_birth = models.DateField(null=True, blank=True)
+    gender = models.CharField(max_length=10, choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')],
+                              blank=True)
+    current_location = models.CharField(max_length=200)
+    preferred_job_location = models.CharField(max_length=200)
+    expected_salary = models.IntegerField(null=True, blank=True)
+    career_objective = models.TextField(blank=True)
+    resume = models.FileField(upload_to="resumes/", blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.user.username
 
-    # Features for Decision Tree / Naive Bayes
-    experience_years = models.IntegerField(default=0)
-    education_level = models.CharField(max_length=50, default='Bachelor')
-    location = models.CharField(max_length=100)
-    salary_expectation = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 
-    # Preferences for Filtering
-    remote_preference = models.BooleanField(default=False)
-    preferred_locations = models.JSONField(default=list, blank=True)
+class Education(models.Model):
+    job_seeker = models.ForeignKey(JobSeekerProfile, on_delete=models.CASCADE)
+    degree = models.CharField(max_length=200)
+    institution = models.CharField(max_length=200)
+    field_of_study = models.CharField(max_length=200)
+    graduation_year = models.IntegerField()
 
     def __str__(self):
-        return f"{self.user.username} Profile"
+        return self.degree
 
 
-class SeekerSkill(models.Model):
-    """Links User to Skills (Replaces UserSkill in accounts)"""
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='seeker_skills')
-    skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
-    proficiency = models.IntegerField(choices=[(1, 'Beginner'), (2, 'Intermediate'), (3, 'Advanced'), (4, 'Expert')])
-    years_used = models.IntegerField(default=0)
+class WorkExperience(models.Model):
+    job_seeker = models.ForeignKey(JobSeekerProfile, on_delete=models.CASCADE)
+    company_name = models.CharField(max_length=200)
+    position = models.CharField(max_length=200)
+    start_date = models.DateField()
+    end_date = models.DateField(null=True, blank=True)
+    description = models.TextField(blank=True)
+    def __str__(self):
+        return self.position
 
-    class Meta:
-        unique_together = ('user', 'skill')
+
+class PreferredJobCategory(models.Model):
+    job_seeker = models.ForeignKey(JobSeekerProfile, on_delete=models.CASCADE)
+    category_name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.category_name
 
 
-class Application(models.Model):
-    """Tracks applications made by the seeker"""
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='applications')
-    job = models.ForeignKey('jobs.Job', on_delete=models.CASCADE)
-    status = models.CharField(max_length=20, default='Applied')  # Applied, Interview, Rejected
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    # Add this for ML Training (Did they actually get the job?)
-    is_hired = models.BooleanField(default=False)
+class SkillVector(models.Model):
+    job_seeker = models.OneToOneField(JobSeekerProfile, on_delete=models.CASCADE)
+    vector_data = models.JSONField()
+    updated_at = models.DateTimeField(auto_now=True)

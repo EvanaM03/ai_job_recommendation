@@ -26,11 +26,3 @@ class UserProfile(models.Model):
         return f"{self.user.username} Profile"
 
 
-class UserSkill(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    skill = models.ForeignKey('skills.Skill', on_delete=models.CASCADE)
-    proficiency = models.IntegerField(choices=[(1, 'Beginner'), (2, 'Intermediate'), (3, 'Advanced'), (4, 'Expert')])
-    years_used = models.IntegerField(default=0)
-
-    class Meta:
-        unique_together = ('user', 'skill')

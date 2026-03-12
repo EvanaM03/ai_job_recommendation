@@ -44,9 +44,12 @@ INSTALLED_APPS = [
 
     'accounts',
     'jobs',
-    # 'skills',
+    'skill',
     'recommendations',
     'ml_engine',
+    'company',
+    'job_seeker',
+    'dataset',
 ]
 
 MIDDLEWARE = [
