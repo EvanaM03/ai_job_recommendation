@@ -6,18 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="31af61dc-360c-454c-a1dd-1b519cfa09c3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ai_job_recommendation/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ai_job_recommendation/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/job_seeker/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/job_seeker/migrations/0002_initial.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/job_seeker/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/job_seeker/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/job_seeker/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/job_seeker/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jobs/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jobs/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/jobs/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_engine/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_engine/migrations/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml_engine/services.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_engine/recommender.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/recommendations/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/recommendations/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/recommendations/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

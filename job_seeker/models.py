@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 from accounts.models import User
 from skill.models import Skill
@@ -5,7 +7,7 @@ from skill.models import Skill
 
 class JobSeekerProfile(models.Model):
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=1)
     date_of_birth = models.DateField(null=True, blank=True)
     gender = models.CharField(max_length=10, choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')],
                               blank=True)
@@ -15,12 +17,13 @@ class JobSeekerProfile(models.Model):
     career_objective = models.TextField(blank=True)
     resume = models.FileField(upload_to="resumes/", blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
         return self.user.username
 
 
 class Education(models.Model):
-    job_seeker = models.ForeignKey(JobSeekerProfile, on_delete=models.CASCADE)
+    job_seeker = models.ForeignKey(JobSeekerProfile, on_delete=models.CASCADE, default=1)
     degree = models.CharField(max_length=200)
     institution = models.CharField(max_length=200)
     field_of_study = models.CharField(max_length=200)
@@ -31,7 +34,7 @@ class Education(models.Model):
 
 
 class WorkExperience(models.Model):
-    job_seeker = models.ForeignKey(JobSeekerProfile, on_delete=models.CASCADE)
+    job_seeker = models.ForeignKey(JobSeekerProfile, on_delete=models.CASCADE, default=1)
     company_name = models.CharField(max_length=200)
     position = models.CharField(max_length=200)
     start_date = models.DateField()
@@ -42,13 +45,13 @@ class WorkExperience(models.Model):
 
 
 class PreferredJobCategory(models.Model):
-    job_seeker = models.ForeignKey(JobSeekerProfile, on_delete=models.CASCADE)
+    job_seeker = models.ForeignKey(JobSeekerProfile, on_delete=models.CASCADE, default=1)
     category_name = models.CharField(max_length=100)
     def __str__(self):
         return self.category_name
 
 
 class SkillVector(models.Model):
-    job_seeker = models.OneToOneField(JobSeekerProfile, on_delete=models.CASCADE)
+    job_seeker = models.OneToOneField(JobSeekerProfile, on_delete=models.CASCADE, default=1)
     vector_data = models.JSONField()
     updated_at = models.DateTimeField(auto_now=True)
