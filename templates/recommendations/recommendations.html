@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block title %}AI Job Recommendations - JobAI{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto px-4 py-10">
+    <!-- Header -->
+    <div class="mb-8">
+        <div class="flex items-center space-x-3 mb-2">
+            <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center">
+                <i class="fas fa-brain text-white"></i>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-900">AI Job Recommendations</h1>
+        </div>
+        <p class="text-gray-500">Personalized job matches powered by machine learning — based on your bio and skills</p>
+    </div>
+
+    <!-- How AI Works -->
+    <div class="bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-100 rounded-2xl p-5 mb-8">
+        <div class="flex items-start space-x-4">
+            <i class="fas fa-info-circle text-indigo-500 text-lg mt-0.5"></i>
+            <div>
+                <p class="font-semibold text-indigo-900 mb-1">How our AI works</p>
+                <p class="text-indigo-700 text-sm">We use <strong>TF-IDF Vectorization</strong> and <strong>Cosine Similarity</strong> to compare your bio and skills against all open job descriptions. Jobs with the highest similarity scores appear first.</p>
+            </div>
+        </div>
+    </div>
+
+    {% if error_message %}
+    <!-- No Recommendations Yet -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-10 text-center mb-8">
+        <div class="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-robot text-indigo-500 text-3xl"></i>
+        </div>
+        <h2 class="text-xl font-bold text-gray-800 mb-2">{{ error_message }}</h2>
+        <p class="text-gray-500 mb-6 max-w-md mx-auto">Our AI needs more information about you. Complete the steps below to get personalized recommendations.</p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="{% url 'edit_profile' %}" class="px-5 py-2.5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition">
+                <i class="fas fa-user mr-1"></i> Complete Your Profile
+            </a>
+            <a href="{% url 'manage_skills' %}" class="px-5 py-2.5 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 transition">
+                <i class="fas fa-tools mr-1"></i> Add Your Skills
+            </a>
+            <a href="{% url 'job_list' %}" class="px-5 py-2.5 border border-gray-200 text-gray-600 rounded-lg font-medium hover:bg-gray-50 transition">
+                Browse All Jobs
+            </a>
+        </div>
+    </div>
+    {% else %}
+    <!-- Recommendations Grid -->
+    <div class="mb-4 flex items-center justify-between">
+        <p class="text-gray-600 font-medium">Found <span class="text-indigo-600 font-bold">{{ recommended_jobs|length }}</span> matching positions for you</p>
+        <a href="{% url 'profile_view' %}" class="text-sm text-indigo-600 hover:underline"><i class="fas fa-edit mr-1"></i>Update profile to improve matches</a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+        {% for job in recommended_jobs %}
+        <a href="{% url 'job_detail' job.id %}" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 card-hover block group relative">
+            <!-- AI Match Badge -->
+            <div class="absolute top-4 right-4">
+                <span class="text-xs px-2 py-1 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-full font-medium">
+                    <i class="fas fa-magic mr-1"></i> AI Match
+                </span>
+            </div>
+
+            <div class="flex items-start space-x-3 mb-4 pr-20">
+                <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-200 transition">
+                    <i class="fas fa-building text-indigo-600 text-lg"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-900 group-hover:text-indigo-600 transition leading-tight">{{ job.title }}</h3>
+                    <p class="text-gray-500 text-sm">{{ job.company_name }}</p>
+                </div>
+            </div>
+
+            {% if job.category %}
+            <p class="text-indigo-500 text-xs mb-2 font-medium">{{ job.category.name }}</p>
+            {% endif %}
+
+            <div class="flex flex-wrap gap-2 text-xs text-gray-400 mb-3">
+                <span><i class="fas fa-map-marker-alt mr-1"></i>{{ job.location }}</span>
+                <span class="px-2 py-0.5 rounded-full
+                    {% if job.job_type == 'Remote' %}badge-green
+                    {% elif job.job_type == 'Full-time' %}badge-blue
+                    {% else %}badge-yellow{% endif %}">
+                    {{ job.job_type }}
+                </span>
+                {% if job.salary_range %}<span><i class="fas fa-dollar-sign mr-1"></i>{{ job.salary_range }}</span>{% endif %}
+            </div>
+
+            <p class="text-gray-500 text-sm line-clamp-2 mb-3">{{ job.description|truncatewords:18 }}</p>
+
+            {% if job.required_skills.all %}
+            <div class="flex flex-wrap gap-1">
+                {% for skill in job.required_skills.all|slice:":3" %}
+                <span class="text-xs px-2 py-1 bg-indigo-50 text-indigo-600 rounded-full">{{ skill.name }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </a>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Recent Activity -->
+    {% if recent_interactions %}
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+        <h2 class="text-lg font-bold text-gray-900 mb-4"><i class="fas fa-history text-gray-400 mr-2"></i>Your Recent Activity</h2>
+        <div class="divide-y divide-gray-50">
+            {% for interaction in recent_interactions %}
+            <div class="flex items-center space-x-3 py-3">
+                <div class="w-7 h-7 rounded-full flex items-center justify-center
+                    {% if interaction.action == 'applied' %}bg-green-100{% elif interaction.action == 'viewed' %}bg-blue-100{% else %}bg-gray-100{% endif %}">
+                    <i class="fas fa-{% if interaction.action == 'applied' %}check text-green-600{% elif interaction.action == 'viewed' %}eye text-blue-600{% else %}heart text-gray-500{% endif %} text-xs"></i>
+                </div>
+                <div class="flex-1">
+                    <span class="text-sm text-gray-700 font-medium capitalize">{{ interaction.action }}</span>
+                    <span class="text-sm text-gray-500"> — </span>
+                    <a href="{% url 'job_detail' interaction.job.id %}" class="text-sm text-indigo-600 hover:underline">{{ interaction.job.title }}</a>
+                </div>
+                <span class="text-xs text-gray-400">{{ interaction.timestamp|date:"M d" }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

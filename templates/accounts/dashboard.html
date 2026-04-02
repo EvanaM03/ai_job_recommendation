@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - JobAI{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto px-4 py-10">
+    <!-- Header -->
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900">Welcome back, {{ user.first_name|default:user.username }}! 👋</h1>
+        <p class="text-gray-500 mt-1">Here's an overview of your job search activity</p>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <a href="{% url 'recommendations' %}" class="bg-gradient-to-br from-indigo-500 to-purple-600 text-white rounded-xl p-5 text-center card-hover">
+            <i class="fas fa-magic text-2xl mb-2 block"></i>
+            <span class="font-semibold text-sm">AI Recommendations</span>
+        </a>
+        <a href="{% url 'job_list' %}" class="bg-gradient-to-br from-blue-500 to-cyan-600 text-white rounded-xl p-5 text-center card-hover">
+            <i class="fas fa-search text-2xl mb-2 block"></i>
+            <span class="font-semibold text-sm">Browse Jobs</span>
+        </a>
+        <a href="{% url 'profile_view' %}" class="bg-gradient-to-br from-green-500 to-teal-600 text-white rounded-xl p-5 text-center card-hover">
+            <i class="fas fa-user text-2xl mb-2 block"></i>
+            <span class="font-semibold text-sm">My Profile</span>
+        </a>
+        <a href="{% url 'my_applications' %}" class="bg-gradient-to-br from-orange-500 to-red-600 text-white rounded-xl p-5 text-center card-hover">
+            <i class="fas fa-file-alt text-2xl mb-2 block"></i>
+            <span class="font-semibold text-sm">Applications</span>
+        </a>
+    </div>
+
+    {% if not has_profile %}
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-6 mb-8 flex items-start space-x-4">
+        <div class="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
+            <i class="fas fa-exclamation text-amber-600"></i>
+        </div>
+        <div>
+            <h3 class="font-bold text-amber-900 mb-1">Complete your profile to get AI recommendations</h3>
+            <p class="text-amber-700 text-sm mb-3">Your profile is empty. Add your skills and bio so our AI can match you with the best jobs.</p>
+            <a href="{% url 'setup_profile' %}" class="inline-block px-4 py-2 bg-amber-600 text-white rounded-lg font-medium text-sm hover:bg-amber-700 transition">
+                Set Up Profile <i class="fas fa-arrow-right ml-1"></i>
+            </a>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Recent Applications -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+            <div class="flex justify-between items-center mb-5">
+                <h2 class="text-lg font-bold text-gray-900"><i class="fas fa-file-alt text-indigo-500 mr-2"></i>Recent Applications</h2>
+                <a href="{% url 'my_applications' %}" class="text-indigo-600 text-sm hover:underline">View all</a>
+            </div>
+            {% for app in applications %}
+            <div class="flex items-center justify-between py-3 border-b border-gray-50 last:border-0">
+                <div>
+                    <p class="font-medium text-gray-900 text-sm">{{ app.job.title }}</p>
+                    <p class="text-gray-400 text-xs">{{ app.job.company_name }} · {{ app.applied_at|date:"M d, Y" }}</p>
+                </div>
+                <span class="text-xs px-2 py-1 rounded-full font-medium
+                    {% if app.status == 'Applied' %}badge-blue
+                    {% elif app.status == 'Shortlisted' %}badge-green
+                    {% elif app.status == 'Rejected' %}badge-red
+                    {% elif app.status == 'Hired' %}badge-purple
+                    {% else %}badge-yellow{% endif %}">
+                    {{ app.status }}
+                </span>
+            </div>
+            {% empty %}
+            <div class="text-center py-8 text-gray-400">
+                <i class="fas fa-inbox text-3xl mb-2 block"></i>
+                <p class="text-sm">No applications yet</p>
+                <a href="{% url 'job_list' %}" class="text-indigo-600 text-sm mt-1 inline-block hover:underline">Browse jobs</a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+            <div class="flex justify-between items-center mb-5">
+                <h2 class="text-lg font-bold text-gray-900"><i class="fas fa-clock text-purple-500 mr-2"></i>Recent Activity</h2>
+            </div>
+            {% for interaction in recent_interactions %}
+            <div class="flex items-center space-x-3 py-3 border-b border-gray-50 last:border-0">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0
+                    {% if interaction.action == 'applied' %}bg-green-100{% elif interaction.action == 'viewed' %}bg-blue-100{% else %}bg-gray-100{% endif %}">
+                    <i class="fas fa-{% if interaction.action == 'applied' %}check text-green-600{% elif interaction.action == 'viewed' %}eye text-blue-600{% else %}heart text-gray-500{% endif %} text-xs"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm text-gray-700">
+                        <span class="font-medium capitalize">{{ interaction.action }}</span> 
+                        <span class="text-gray-500">{{ interaction.job.title }}</span>
+                    </p>
+                    <p class="text-xs text-gray-400">{{ interaction.timestamp|date:"M d, Y H:i" }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="text-center py-8 text-gray-400">
+                <i class="fas fa-history text-3xl mb-2 block"></i>
+                <p class="text-sm">No activity yet</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

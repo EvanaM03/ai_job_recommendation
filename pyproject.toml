@@ -8,5 +8,6 @@ dependencies = [
     "gunicorn>=25.3.0",
     "numpy>=2.4.4",
     "pandas>=3.0.2",
+    "pillow>=12.2.0",
     "scikit-learn>=1.8.0",
 ]

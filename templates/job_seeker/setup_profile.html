@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block title %}Set Up Profile - JobAI{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto px-4 py-10">
+    <!-- Progress Indicator -->
+    <div class="mb-8">
+        <div class="flex items-center justify-between text-sm text-gray-400 mb-2">
+            <span class="text-indigo-600 font-semibold">Step 1: Profile Info</span>
+            <span>Step 2: Skills</span>
+            <span>Step 3: Done</span>
+        </div>
+        <div class="h-2 bg-gray-200 rounded-full">
+            <div class="h-2 bg-indigo-600 rounded-full" style="width: 33%"></div>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+        <div class="mb-6">
+            <h1 class="text-2xl font-bold text-gray-900">{% if created %}Let's build your profile{% else %}Update Your Profile{% endif %}</h1>
+            <p class="text-gray-500 mt-1">This information helps our AI find the best job matches for you</p>
+        </div>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="mb-5">
+                <label class="block text-sm font-semibold text-gray-700 mb-1">
+                    <i class="fas fa-file-alt text-indigo-400 mr-1"></i>Bio / Professional Summary
+                    <span class="text-indigo-500 text-xs ml-1">(Used by AI for job matching)</span>
+                </label>
+                {{ form.bio }}
+                <p class="text-xs text-gray-400 mt-1">Describe your background, key skills, and what you're looking for in a job</p>
+            </div>
+
+            <div class="mb-5">
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Career Objective</label>
+                {{ form.career_objective }}
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-5">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Date of Birth</label>
+                    {{ form.date_of_birth }}
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Gender</label>
+                    {{ form.gender }}
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-5">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1"><i class="fas fa-map-marker-alt text-red-400 mr-1"></i>Current Location</label>
+                    {{ form.current_location }}
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1"><i class="fas fa-map-pin text-blue-400 mr-1"></i>Preferred Job Location</label>
+                    {{ form.preferred_job_location }}
+                </div>
+            </div>
+
+            <div class="mb-5">
+                <label class="block text-sm font-semibold text-gray-700 mb-1"><i class="fas fa-dollar-sign text-green-400 mr-1"></i>Expected Annual Salary (USD)</label>
+                {{ form.expected_salary }}
+            </div>
+
+            <div class="mb-5">
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Resume (PDF)</label>
+                {{ form.resume }}
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Profile Picture</label>
+                {{ form.profile_picture }}
+            </div>
+
+            <button type="submit" class="w-full py-3.5 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition text-lg">
+                Save & Continue <i class="fas fa-arrow-right ml-1"></i>
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

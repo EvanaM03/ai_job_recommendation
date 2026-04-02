@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% block title %}My Profile - JobAI{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-4 py-10">
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-3xl font-bold text-gray-900">My Profile</h1>
+        <a href="{% url 'edit_profile' %}" class="px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition">
+            <i class="fas fa-edit mr-1"></i> Edit Profile
+        </a>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Left Sidebar -->
+        <div class="lg:col-span-1 space-y-6">
+            <!-- Profile Card -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 text-center">
+                <div class="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    {% if profile.profile_picture %}
+                    <img src="{{ profile.profile_picture.url }}" class="w-20 h-20 rounded-full object-cover">
+                    {% else %}
+                    <span class="text-3xl font-bold text-indigo-600">{{ request.user.username|first|upper }}</span>
+                    {% endif %}
+                </div>
+                <h2 class="text-xl font-bold text-gray-900">{{ request.user.get_full_name|default:request.user.username }}</h2>
+                <p class="text-gray-400 text-sm mt-0.5">@{{ request.user.username }}</p>
+                {% if profile.current_location %}
+                <p class="text-gray-500 text-sm mt-2"><i class="fas fa-map-marker-alt text-red-400 mr-1"></i>{{ profile.current_location }}</p>
+                {% endif %}
+                {% if profile.expected_salary %}
+                <p class="text-gray-500 text-sm mt-1"><i class="fas fa-dollar-sign text-green-400 mr-1"></i>${{ profile.expected_salary|floatformat:0 }}/year</p>
+                {% endif %}
+
+                <!-- Quick Links -->
+                <div class="mt-4 space-y-2">
+                    <a href="{% url 'manage_skills' %}" class="block px-4 py-2 bg-indigo-50 text-indigo-700 rounded-lg text-sm font-medium hover:bg-indigo-100 transition">
+                        <i class="fas fa-tools mr-1"></i> Manage Skills
+                    </a>
+                    <a href="{% url 'manage_education' %}" class="block px-4 py-2 bg-purple-50 text-purple-700 rounded-lg text-sm font-medium hover:bg-purple-100 transition">
+                        <i class="fas fa-graduation-cap mr-1"></i> Education
+                    </a>
+                    <a href="{% url 'manage_experience' %}" class="block px-4 py-2 bg-green-50 text-green-700 rounded-lg text-sm font-medium hover:bg-green-100 transition">
+                        <i class="fas fa-briefcase mr-1"></i> Experience
+                    </a>
+                    <a href="{% url 'recommendations' %}" class="block px-4 py-2 bg-yellow-50 text-yellow-700 rounded-lg text-sm font-medium hover:bg-yellow-100 transition">
+                        <i class="fas fa-magic mr-1"></i> AI Recommendations
+                    </a>
+                </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-gray-900"><i class="fas fa-tools text-indigo-400 mr-2"></i>Skills</h3>
+                    <a href="{% url 'manage_skills' %}" class="text-xs text-indigo-600 hover:underline">Manage</a>
+                </div>
+                {% if skills %}
+                <div class="flex flex-wrap gap-2">
+                    {% for seeker_skill in skills %}
+                    <span class="px-2.5 py-1 rounded-full text-xs font-medium
+                        {% if seeker_skill.proficiency == 'Expert' %}bg-purple-100 text-purple-700
+                        {% elif seeker_skill.proficiency == 'Advanced' %}bg-indigo-100 text-indigo-700
+                        {% elif seeker_skill.proficiency == 'Intermediate' %}bg-blue-100 text-blue-700
+                        {% else %}bg-gray-100 text-gray-600{% endif %}">
+                        {{ seeker_skill.skill.name }}
+                    </span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-gray-400 text-sm text-center py-4">No skills added yet</p>
+                <a href="{% url 'manage_skills' %}" class="block text-center text-sm text-indigo-600 hover:underline">+ Add Skills</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="lg:col-span-2 space-y-6">
+            <!-- Bio -->
+            {% if profile.bio %}
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                <h3 class="font-bold text-gray-900 mb-3"><i class="fas fa-user text-indigo-400 mr-2"></i>About Me</h3>
+                <p class="text-gray-600 leading-relaxed">{{ profile.bio }}</p>
+            </div>
+            {% else %}
+            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5">
+                <p class="text-amber-700 text-sm font-medium"><i class="fas fa-exclamation-triangle mr-2"></i>Your bio is empty. Add a bio to improve AI job matching!</p>
+                <a href="{% url 'edit_profile' %}" class="inline-block mt-2 text-sm text-amber-800 underline">Edit Profile</a>
+            </div>
+            {% endif %}
+
+            <!-- Career Objective -->
+            {% if profile.career_objective %}
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                <h3 class="font-bold text-gray-900 mb-3"><i class="fas fa-target text-green-400 mr-2"></i>Career Objective</h3>
+                <p class="text-gray-600 leading-relaxed">{{ profile.career_objective }}</p>
+            </div>
+            {% endif %}
+
+            <!-- Work Experience -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                <div class="flex justify-between items-center mb-5">
+                    <h3 class="font-bold text-gray-900"><i class="fas fa-briefcase text-blue-400 mr-2"></i>Work Experience</h3>
+                    <a href="{% url 'manage_experience' %}" class="text-xs text-indigo-600 hover:underline">+ Add</a>
+                </div>
+                {% if experience %}
+                <div class="space-y-4">
+                    {% for exp in experience %}
+                    <div class="relative pl-6 border-l-2 border-indigo-100">
+                        <div class="absolute w-3 h-3 bg-indigo-400 rounded-full -left-1.5 top-1.5"></div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-semibold text-gray-900">{{ exp.position }}</h4>
+                                <p class="text-indigo-600 text-sm font-medium">{{ exp.company_name }}</p>
+                                <p class="text-gray-400 text-xs mt-1">
+                                    {{ exp.start_date|date:"M Y" }} – {% if exp.is_current or not exp.end_date %}Present{% else %}{{ exp.end_date|date:"M Y" }}{% endif %}
+                                </p>
+                            </div>
+                        </div>
+                        {% if exp.description %}
+                        <p class="text-gray-500 text-sm mt-2">{{ exp.description }}</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="text-center py-6 text-gray-400">
+                    <i class="fas fa-briefcase text-2xl mb-2 block"></i>
+                    <p class="text-sm">No experience added</p>
+                    <a href="{% url 'manage_experience' %}" class="text-sm text-indigo-600 hover:underline mt-1 inline-block">+ Add Experience</a>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Education -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                <div class="flex justify-between items-center mb-5">
+                    <h3 class="font-bold text-gray-900"><i class="fas fa-graduation-cap text-purple-400 mr-2"></i>Education</h3>
+                    <a href="{% url 'manage_education' %}" class="text-xs text-indigo-600 hover:underline">+ Add</a>
+                </div>
+                {% if education %}
+                <div class="space-y-4">
+                    {% for edu in education %}
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-university text-purple-600 text-sm"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">{{ edu.degree }}</h4>
+                            <p class="text-gray-600 text-sm">{{ edu.field_of_study }}</p>
+                            <p class="text-gray-400 text-xs">{{ edu.institution }} · Class of {{ edu.graduation_year }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="text-center py-6 text-gray-400">
+                    <i class="fas fa-graduation-cap text-2xl mb-2 block"></i>
+                    <p class="text-sm">No education added</p>
+                    <a href="{% url 'manage_education' %}" class="text-sm text-indigo-600 hover:underline mt-1 inline-block">+ Add Education</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
