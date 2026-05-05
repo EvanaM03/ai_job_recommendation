@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
@@ -6,7 +7,6 @@ from .forms import RegisterForm, LoginForm, UserProfileForm
 from .models import UserProfile
 from jobs.models import Job, JobApplication
 from recommendations.models import InteractionLog
-
 
 def home(request):
     recent_jobs = Job.objects.filter(status='Open').order_by('-posted_date')[:6]
