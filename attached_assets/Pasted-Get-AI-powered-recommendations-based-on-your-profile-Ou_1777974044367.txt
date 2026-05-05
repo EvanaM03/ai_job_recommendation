@@ -1,0 +1,142 @@
+Get AI-powered recommendations based on your profile
+
+Our ML engine will find the best matches for your skills
+
+AI Picks 
+Full-time
+Product Manager - SaaS
+TechCorp Inc.
+
+Product Management
+
+San Francisco, CA
+$125,000 - $155,000
+Apr 02
+Lead the product strategy and roadmap for our SaaS platform. You will work closely with engineering, design, and marketing teams …
+
+Agile
+Scrum
+Communication
+Leadership
++1
+Internship
+Python ML Intern
+DataVision Labs
+
+Data Science & AI
+
+New York, NY
+$25/hour
+Apr 02
+Great opportunity for students to gain hands-on experience in machine learning and AI. You will assist the ML team in …
+
+Python
+scikit-learn
+Data Analysis
+Full-time
+Data Engineer
+DataVision Labs
+
+Data Science & AI
+
+New York, NY
+$105,000 - $135,000
+Apr 02
+Build and maintain scalable data pipelines and warehouses. You will work with large volumes of data, design ETL processes, and …
+
+Python
+SQL
+PostgreSQL
+MongoDB
++2
+Full-time
+Cloud Solutions Architect
+CloudNative Solutions
+
+DevOps & Cloud
+
+Austin, TX
+$150,000 - $190,000
+Apr 02
+Design and implement cloud architecture solutions on AWS and Azure. You will work with clients to assess their needs, design …
+
+AWS
+Azure
+Docker
+Kubernetes
++2
+Full-time
+Backend Java Developer
+Fintech Dynamics
+
+Software Engineering
+
+Chicago, IL
+$100,000 - $130,000
+Apr 02
+Develop and maintain high-performance financial systems using Java and microservices architecture. You will design APIs, work with databases, and ensure …
+
+SQL
+Docker
+Java
+REST APIs
++1
+Remote
+UI/UX Designer
+DesignHub Studio
+
+Design & UX
+
+Remote
+$80,000 - $105,000
+Apr 02
+Design intuitive and engaging user experiences for web and mobile products. You will conduct user research, create wireframes, prototypes, and …
+
+UI/UX Design
+Figma
+Remote
+React Frontend Developer
+DesignHub Studio
+
+Software Engineering
+
+Remote
+$85,000 - $110,000
+Apr 02
+Create beautiful, responsive user interfaces using React and TypeScript. You will collaborate with designers to implement pixel-perfect UIs and ensure …
+
+JavaScript
+React
+TypeScript
+HTML/CSS
+Full-time
+DevOps Engineer
+CloudNative Solutions
+
+DevOps & Cloud
+
+Austin, TX
+$115,000 - $145,000
+Apr 02
+Manage and improve our cloud infrastructure. You will work with AWS, Kubernetes, Docker, and CI/CD pipelines to ensure reliability and …
+
+AWS
+Docker
+Kubernetes
+Git
++1
+Full-time
+Data Scientist
+DataVision Labs
+
+Data Science & AI
+
+New York, NY
+$110,000 - $140,000
+Apr 02
+Analyze complex datasets to generate business insights. You will build predictive models, create data visualizations, and communicate findings to stakeholders. …
+
+Python
+SQL
+Machine Learning
+Data Science
