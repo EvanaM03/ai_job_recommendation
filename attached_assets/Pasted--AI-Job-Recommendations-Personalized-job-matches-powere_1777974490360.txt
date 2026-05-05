@@ -1,0 +1,159 @@
+
+AI Job Recommendations
+Personalized job matches powered by machine learning — based on your bio and skills
+
+How our AI works
+
+We use TF-IDF Vectorization and Cosine Similarity to compare your bio and skills against all open job descriptions. Jobs with the highest similarity scores appear first.
+
+Found 10 matching positions for you
+
+Update profile to improve matches
+ AI Match
+Product Manager - SaaS
+TechCorp Inc.
+
+Product Management
+
+San Francisco, CA
+Full-time
+$125,000 - $155,000
+Lead the product strategy and roadmap for our SaaS platform. You will work closely with engineering, design, and …
+
+Agile
+Scrum
+Communication
+ AI Match
+Python ML Intern
+DataVision Labs
+
+Data Science & AI
+
+New York, NY
+Internship
+$25/hour
+Great opportunity for students to gain hands-on experience in machine learning and AI. You will assist the ML …
+
+Python
+scikit-learn
+Data Analysis
+ AI Match
+Data Engineer
+DataVision Labs
+
+Data Science & AI
+
+New York, NY
+Full-time
+$105,000 - $135,000
+Build and maintain scalable data pipelines and warehouses. You will work with large volumes of data, design ETL …
+
+Python
+SQL
+PostgreSQL
+ AI Match
+Backend Java Developer
+Fintech Dynamics
+
+Software Engineering
+
+Chicago, IL
+Full-time
+$100,000 - $130,000
+Develop and maintain high-performance financial systems using Java and microservices architecture. You will design APIs, work with databases, …
+
+SQL
+Docker
+Java
+ AI Match
+UI/UX Designer
+DesignHub Studio
+
+Design & UX
+
+Remote
+Remote
+$80,000 - $105,000
+Design intuitive and engaging user experiences for web and mobile products. You will conduct user research, create wireframes, …
+
+UI/UX Design
+Figma
+ AI Match
+DevOps Engineer
+CloudNative Solutions
+
+DevOps & Cloud
+
+Austin, TX
+Full-time
+$115,000 - $145,000
+Manage and improve our cloud infrastructure. You will work with AWS, Kubernetes, Docker, and CI/CD pipelines to ensure …
+
+AWS
+Docker
+Kubernetes
+ AI Match
+Data Scientist
+DataVision Labs
+
+Data Science & AI
+
+New York, NY
+Full-time
+$110,000 - $140,000
+Analyze complex datasets to generate business insights. You will build predictive models, create data visualizations, and communicate findings …
+
+Python
+SQL
+Machine Learning
+ AI Match
+Full Stack JavaScript Developer
+TechCorp Inc.
+
+Software Engineering
+
+Remote
+Remote
+$90,000 - $120,000
+Build modern web applications using React and Node.js. You will work on both frontend and backend, creating responsive …
+
+JavaScript
+React
+Node.js
+ AI Match
+Machine Learning Engineer
+DataVision Labs
+
+Data Science & AI
+
+New York, NY
+Full-time
+$130,000 - $170,000
+Join our AI team to build production machine learning systems. You will design and implement ML pipelines, work …
+
+Python
+SQL
+Machine Learning
+ AI Match
+Senior Python Developer
+TechCorp Inc.
+
+Software Engineering
+
+San Francisco, CA
+Full-time
+$120,000 - $150,000
+We are looking for a Senior Python Developer to build and maintain scalable web applications. You will work …
+
+Python
+Django
+PostgreSQL
+Your Recent Activity
+viewed — Python ML Intern
+May 05
+applied — Data Engineer
+May 05
+viewed — Data Engineer
+May 05
+viewed — Machine Learning Engineer
+May 05
