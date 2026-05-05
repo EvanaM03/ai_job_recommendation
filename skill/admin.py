@@ -12,4 +12,6 @@ class SkillAdmin(admin.ModelAdmin):
 @admin.register(JobSkill)
 class JobSkillAdmin(admin.ModelAdmin):
     list_display = ['job', 'skill', 'is_required']
+
     list_filter = ['is_required']
+

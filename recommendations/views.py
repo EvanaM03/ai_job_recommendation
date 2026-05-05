@@ -1,3 +1,4 @@
+
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
@@ -11,6 +12,7 @@ def recommendations_view(request):
     user = request.user
     recommended_jobs = []
     error_message = None
+
 
     try:
         # Always clear stale recommendation logs so deleted jobs never resurface
@@ -45,6 +47,7 @@ def recommendations_view(request):
         .select_related('job')
         .order_by('-timestamp')[:5]
     )
+
 
     return render(request, 'recommendations/recommendations.html', {
         'recommended_jobs': recommended_jobs,

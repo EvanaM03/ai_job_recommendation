@@ -1,9 +1,11 @@
+
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
 from .models import Job, JobCategory, JobApplication
 from recommendations.models import InteractionLog
+
 
 
 def job_list(request):
@@ -67,4 +69,6 @@ def apply_job(request, job_id):
 @login_required
 def my_applications(request):
     applications = JobApplication.objects.filter(applicant=request.user).select_related('job').order_by('-applied_at')
+
     return render(request, 'jobs/my_applications.html', {'applications': applications})
+

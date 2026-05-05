@@ -11,4 +11,6 @@ class InteractionLogAdmin(admin.ModelAdmin):
 @admin.register(RecommendationLog)
 class RecommendationLogAdmin(admin.ModelAdmin):
     list_display = ['user', 'job', 'algorithm_used', 'score', 'created_at']
+
     list_filter = ['algorithm_used']
+

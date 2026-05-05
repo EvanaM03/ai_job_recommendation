@@ -27,4 +27,6 @@ class JobSeekerProfileAdmin(admin.ModelAdmin):
 @admin.register(SeekerSkill)
 class SeekerSkillAdmin(admin.ModelAdmin):
     list_display = ['job_seeker', 'skill', 'proficiency']
+
     list_filter = ['proficiency']
+

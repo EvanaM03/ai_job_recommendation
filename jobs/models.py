@@ -6,7 +6,13 @@ from skill.models import Skill
 
 class JobCategory(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True)\
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Job Categories"
 
     def __str__(self):
         return self.name
@@ -16,6 +22,7 @@ class JobCategory(models.Model):
 
 
 class Job(models.Model):
+
     JOB_TYPE_CHOICES = [
         ('Full-time', 'Full-time'),
         ('Part-time', 'Part-time'),
@@ -38,9 +45,13 @@ class Job(models.Model):
 
     def __str__(self):
         return self.title
+    class Meta:
+        ordering = ['-posted_date']
+
 
     class Meta:
         ordering = ['-posted_date']
+
 
 
 class JobApplication(models.Model):
@@ -57,8 +68,10 @@ class JobApplication(models.Model):
     applied_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Applied')
 
+
     class Meta:
         unique_together = ('job', 'applicant')
+
 
     def __str__(self):
         return f"{self.applicant.username} -> {self.job.title}"

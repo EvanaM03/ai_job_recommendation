@@ -129,4 +129,6 @@ def delete_experience(request, exp_id):
     exp = get_object_or_404(WorkExperience, pk=exp_id, job_seeker=profile)
     exp.delete()
     messages.success(request, 'Work experience removed.')
+
     return redirect('manage_experience')
+
