@@ -5,10 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="31af61dc-360c-454c-a1dd-1b519cfa09c3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/accounts/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/job_seeker/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/job_seeker/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jobs/management/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jobs/management/commands/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jobs/management/commands/seed_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jobs/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recommendations/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/accounts/dashboard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/accounts/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/accounts/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/job_seeker/edit_profile.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/job_seeker/manage_education.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/job_seeker/manage_experience.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/job_seeker/manage_skills.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/job_seeker/profile.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/job_seeker/setup_profile.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/jobs/apply.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/jobs/job_detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/jobs/job_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/jobs/my_applications.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/recommendations/recommendations.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/job_seeker/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/job_seeker/migrations/0002_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ai_job_recommendation/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ai_job_recommendation/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/company/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/job_seeker/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/job_seeker/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/job_seeker/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/job_seeker/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/job_seeker/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/job_seeker/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jobs/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/jobs/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jobs/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/jobs/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jobs/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/jobs/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recommendations/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/recommendations/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recommendations/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/recommendations/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/skill/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/skill/admin.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +53,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="Python Script" />
       </list>
     </option>
@@ -25,36 +61,48 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "developer2-pinakin"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;developer2-pinakin&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/EvanaM03/ai_job_recommendation.git",
-    "accountId": "341d190b-4d01-4913-8a7e-f8f395614c29"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/EvanaM03/ai_job_recommendation.git&quot;,
+    &quot;accountId&quot;: &quot;341d190b-4d01-4913-8a7e-f8f395614c29&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="3AprZXh0ah9zCs3artfDl3TO60A" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/ai_job_recommendation/templates/recommendations&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\ai_job_recommendation\templates\recommendations" />
+      <recent name="E:\ai_job_recommendation\templates\job_seeker" />
+      <recent name="E:\ai_job_recommendation\templates\jobs" />
+      <recent name="E:\ai_job_recommendation\templates\accounts" />
+      <recent name="E:\ai_job_recommendation\recommendations" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\ai_job_recommendation\ml_engine" />
       <recent name="E:\ai_job_recommendation" />
